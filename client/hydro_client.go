@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/hydroprotocol/amm-bots/utils"
+	"github.com/wanchain/dex-amm-bots/utils"
 	"github.com/shopspring/decimal"
 	"github.com/sirupsen/logrus"
 	"strconv"

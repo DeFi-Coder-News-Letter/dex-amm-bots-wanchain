@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/hydroprotocol/amm-bots/algorithm"
-	"github.com/hydroprotocol/amm-bots/client"
+	"github.com/wanchain/dex-amm-bots/algorithm"
+	"github.com/wanchain/dex-amm-bots/client"
 	"github.com/shopspring/decimal"
 	"os"
 )

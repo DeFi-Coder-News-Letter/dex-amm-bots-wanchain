@@ -1,6 +1,6 @@
 This repository is a Liquidity Module for the Hydro SDK.
 
-Liquidity Modules allow relayers to instantly fill their orderbooks and bootstrap liquidity with minimal effort. This particular module uses a [Constant Product Market Making Model](https://github.com/HydroProtocol/amm-bots#constant-product-amm), discussed in greater detail below.
+Liquidity Modules allow relayers to instantly fill their orderbooks and bootstrap liquidity with minimal effort. This particular module uses a [Constant Product Market Making Model](https://github.com/wanchain/dex-amm-bots#constant-product-amm), discussed in greater detail below.
 
 #### Using this repository
 

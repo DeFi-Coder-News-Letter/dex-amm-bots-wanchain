@@ -2,7 +2,7 @@ package client
 
 import (
 	"fmt"
-	"github.com/hydroprotocol/amm-bots/utils"
+	"github.com/wanchain/dex-amm-bots/utils"
 	"github.com/shopspring/decimal"
 	"testing"
 )
