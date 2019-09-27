@@ -4,13 +4,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/wanchain/dex-amm-bots/utils"
-	"github.com/shopspring/decimal"
-	"github.com/sirupsen/logrus"
 	"strconv"
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/shopspring/decimal"
+	"github.com/sirupsen/logrus"
+	"github.com/wanchain/dex-amm-bots/utils"
 )
 
 func NewHydroClient(privateKey string, baseToken string, quoteToken string, baseUrl string) *HydroClient {
@@ -205,8 +206,11 @@ func (client *HydroClient) CancelOrder(orderId string) error {
 func (client *HydroClient) CancelAllPendingOrders() (bool, error) {
 	orders, err := client.GetAllPendingOrders()
 	if err != nil {
+		fmt.Println("%v", err)
 		return false, err
 	}
+	fmt.Printf("orders count:%d", len(orders))
+
 	var wg sync.WaitGroup
 	for _, order := range orders {
 		wg.Add(1)

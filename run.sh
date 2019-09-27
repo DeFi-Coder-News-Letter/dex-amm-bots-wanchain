@@ -1,0 +1,13 @@
+#!/bin/bash
+
+BOT_TYPE=CONST_PRODUCT \
+BOT_PRIVATE_KEY=0x3a272b0f1dffd22bde3e391741bd2da1c3b0b7b633c4368ee2adb67dc017a58f \
+BOT_BASE_TOKEN=TCA \
+BOT_QUOTE_TOKEN=WETH \
+BOT_BASE_URL=https://testdex.wandevs.org:43001 \
+BOT_MIN_PRICE=0.008 \
+BOT_MAX_PRICE=0.015 \
+BOT_PRICE_GAP=0.1 \
+BOT_EXPAND_INVENTORY=2 \
+BOT_WEB3_URL=https://testdex.wandevs.org:48545 \
+go run main.go

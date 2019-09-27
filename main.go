@@ -1,13 +1,17 @@
 package main
 
 import (
+	"fmt"
+	"os"
+
+	"github.com/shopspring/decimal"
 	"github.com/wanchain/dex-amm-bots/algorithm"
 	"github.com/wanchain/dex-amm-bots/client"
-	"github.com/shopspring/decimal"
-	"os"
 )
 
 func main() {
+
+	fmt.Println("start")
 
 	botType := os.Getenv("BOT_TYPE")
 
@@ -39,6 +43,9 @@ func startConstProductBot() {
 		os.Getenv("BOT_BASE_URL"),
 	)
 
+	// makerClient.CancelAllPendingOrders()
+	// return
+
 	minPrice, _ := decimal.NewFromString(os.Getenv("BOT_MIN_PRICE"))
 	maxPrice, _ := decimal.NewFromString(os.Getenv("BOT_MAX_PRICE"))
 	priceGap, _ := decimal.NewFromString(os.Getenv("BOT_PRICE_GAP"))
@@ -55,5 +62,4 @@ func startConstProductBot() {
 	)
 
 	bot.Run()
-
 }

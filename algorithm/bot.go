@@ -1,12 +1,13 @@
 package algorithm
 
 import (
-	"github.com/wanchain/dex-amm-bots/client"
-	"github.com/wanchain/dex-amm-bots/utils"
-	"github.com/shopspring/decimal"
-	"github.com/sirupsen/logrus"
 	"sync"
 	"time"
+
+	"github.com/shopspring/decimal"
+	"github.com/sirupsen/logrus"
+	"github.com/wanchain/dex-amm-bots/client"
+	"github.com/wanchain/dex-amm-bots/utils"
 )
 
 func NewConstProductBot(
@@ -67,10 +68,14 @@ func (b *ConstProductBot) init() {
 	if err != nil {
 		panic(err)
 	}
+	logrus.Info("baseTokenAmount:", baseTokenAmount.String())
 	quoteTokenAmount, _, err := b.quoteToken.GetBalance(b.web3Url, b.client.Address)
 	if err != nil {
 		panic(err)
 	}
+	logrus.Info("quoteTokenAmount:", quoteTokenAmount.String())
+	logrus.Info("quoteAddress:", b.client.Address)
+
 	ladders, err := GenerateConstProductLadders(
 		*baseTokenAmount,
 		*quoteTokenAmount,
@@ -80,6 +85,8 @@ func (b *ConstProductBot) init() {
 		b.expandInventory,
 	)
 	centerPrice := quoteTokenAmount.Div(*baseTokenAmount)
+	logrus.Info("centerPrice:", centerPrice.String())
+	// return
 	for _, ladder := range ladders {
 		if ladder.UpPrice.LessThanOrEqual(centerPrice) {
 			b.createOrder(ladder, utils.BUY)
