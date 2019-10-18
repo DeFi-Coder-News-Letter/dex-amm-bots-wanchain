@@ -15,8 +15,12 @@ func SetPrecision(d decimal.Decimal, precision int) decimal.Decimal {
 	numString := d.String()
 	precisionCount := 0
 	endPosition := 0
+	point := false
 	for _, c := range numString {
-		if c != '.' {
+		if c == '.' {
+			point = true
+		}
+		if point && c != '.' {
 			precisionCount += 1
 		}
 		if precisionCount > precision {
