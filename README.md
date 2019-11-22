@@ -66,6 +66,9 @@ docker run --rm -it \
 
 ## Algorithm Variables
 
+### Cancel Orders
+ - `BOT_CANCEL` Cancel order
+
 ### Constant Product AMM
 
 This bot runs a "constant product market maker model" (popularized in the DeFi community by Uniswap). In short, this model generates a full orderbook based on an initial price for the market. Every transaction that occurs on this market will adjust the prices of the market accordingly. It's a basic supply and demand automated market making system.

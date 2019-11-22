@@ -34,6 +34,7 @@ Env checklist:
  - BOT_EXPAND_INVENTORY
  - BOT_WEB3_URL
  - BOT_OPERATOR_ID
+ - BOT_CANCEL
 */
 func startConstProductBot() {
 	privateKey := os.Getenv("BOT_PRIVATE_KEY")
@@ -54,16 +55,22 @@ func startConstProductBot() {
 	expandInventory, _ := decimal.NewFromString(os.Getenv("BOT_EXPAND_INVENTORY"))
 	web3Url := os.Getenv("BOT_WEB3_URL")
 	operatorID, _ := strconv.Atoi(os.Getenv("BOT_OPERATOR_ID"))
+	isCancel := os.Getenv("BOT_CANCEL")
 
-	bot := algorithm.NewConstProductBot(
-		makerClient,
-		minPrice,
-		maxPrice,
-		priceGap,
-		expandInventory,
-		web3Url,
-		operatorID,
-	)
+	if isCancel == "false" {
+		bot := algorithm.NewConstProductBot(
+			makerClient,
+			minPrice,
+			maxPrice,
+			priceGap,
+			expandInventory,
+			web3Url,
+			operatorID,
+		)
 
-	bot.Run()
+		bot.Run()
+	} else {
+		rt, _ := makerClient.CancelAllPendingOrders()
+		println(rt)
+	}
 }
