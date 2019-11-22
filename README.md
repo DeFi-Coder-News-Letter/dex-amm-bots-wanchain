@@ -29,6 +29,7 @@ BOT_MAX_PRICE=1.2 \
 BOT_PRICE_GAP=0.02 \
 BOT_EXPAND_INVENTORY=2 \
 BOT_WEB3_URL=http://127.0.0.1:8545 \
+BOT_OPERATOR_ID=1
 go run main.go
 ```
 
@@ -46,7 +47,8 @@ docker run --rm -it \
   -e BOT_PRICE_GAP=0.02 \
   -e BOT_EXPAND_INVENTORY=2 \
   -e BOT_WEB3_URL=http://127.0.0.1:8545 \
-  hydroprotocolio/amm-bots
+  -e BOT_OPERATOR_ID=1
+  mutouji/amm-bots
 ```
 
 ## Environment Variables
@@ -84,6 +86,10 @@ Constant product algorithms have a disadvantage of low inventory utilization. Fo
  - `BOT_PRICE_GAP` Price difference rate between adjacent orders. For example, ask price increases by 2% and bid price decreases by 2% if `BOT_PRICE_GAP=0.02`.
  - `BOT_EXPAND_INVENTORY` Multiply your order sizes linearly. For example, all order sizes will be tripled if `BOT_EXPAND_INVENTORY=3`.
 
+#### Operator ID
+
+ - `BOT_OPERATOR_ID` Your exchange website operator ID
+  
 #### Liquidity Sourcing In Constant Product AMM
 
 Constant Product AMM requires a single source of funds for both the base and quote token. As such, the general flow of setting up the AMM bot from scratch is:
