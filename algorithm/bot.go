@@ -16,7 +16,8 @@ func NewConstProductBot(
 	maxPrice decimal.Decimal,
 	priceGap decimal.Decimal,
 	expandInventory decimal.Decimal,
-	web3Url string) *ConstProductBot {
+	web3Url string,
+	operatorID int) *ConstProductBot {
 	baseToken, quoteToken, err := client.GetTradingErc20()
 	if err != nil {
 		panic(err)
@@ -32,6 +33,7 @@ func NewConstProductBot(
 		priceGap,
 		expandInventory,
 		web3Url,
+		operatorID,
 		&lock,
 	}
 	return &bot
@@ -47,6 +49,7 @@ type ConstProductBot struct {
 	priceGap        decimal.Decimal
 	expandInventory decimal.Decimal
 	web3Url         string
+	operatorID      int
 	updateLock      *sync.Mutex
 }
 

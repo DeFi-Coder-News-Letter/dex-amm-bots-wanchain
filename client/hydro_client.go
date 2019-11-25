@@ -124,13 +124,14 @@ func (client *HydroClient) buildUnsignedOrder(
 	expireTimeInSecond int64) (string, error) {
 	var dataContainer IBuildOrder
 	var body = struct {
-		MarketId  string          `json:"marketId"`
-		Side      string          `json:"side"`
-		OrderType string          `json:"orderType"`
-		Price     decimal.Decimal `json:"price"`
-		Amount    decimal.Decimal `json:"amount"`
-		Expires   int64           `json:"expires"`
-	}{client.TradingPair(), side, orderType, price, amount, expireTimeInSecond}
+		MarketId   string          `json:"marketId"`
+		Side       string          `json:"side"`
+		OrderType  string          `json:"orderType"`
+		Price      decimal.Decimal `json:"price"`
+		Amount     decimal.Decimal `json:"amount"`
+		Expires    int64           `json:"expires"`
+		OperatorID int            `json:"operatorID" validate:"required"`
+	}{client.TradingPair(), side, orderType, price, amount, expireTimeInSecond, 1}
 	bodyBytes, _ := json.Marshal(body)
 	resp, err := client.post("orders/build", string(bodyBytes), utils.EmptyKeyPairList)
 	if err != nil {

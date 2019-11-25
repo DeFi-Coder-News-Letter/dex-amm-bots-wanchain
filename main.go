@@ -7,6 +7,7 @@ import (
 	"github.com/shopspring/decimal"
 	"github.com/wanchain/dex-amm-bots/algorithm"
 	"github.com/wanchain/dex-amm-bots/client"
+	"strconv"
 )
 
 func main() {
@@ -32,6 +33,8 @@ Env checklist:
  - BOT_PRICE_GAP
  - BOT_EXPAND_INVENTORY
  - BOT_WEB3_URL
+ - BOT_OPERATOR_ID
+ - BOT_CANCEL
 */
 func startConstProductBot() {
 	privateKey := os.Getenv("BOT_PRIVATE_KEY")
@@ -51,15 +54,23 @@ func startConstProductBot() {
 	priceGap, _ := decimal.NewFromString(os.Getenv("BOT_PRICE_GAP"))
 	expandInventory, _ := decimal.NewFromString(os.Getenv("BOT_EXPAND_INVENTORY"))
 	web3Url := os.Getenv("BOT_WEB3_URL")
+	operatorID, _ := strconv.Atoi(os.Getenv("BOT_OPERATOR_ID"))
+	isCancel := os.Getenv("BOT_CANCEL")
 
-	bot := algorithm.NewConstProductBot(
-		makerClient,
-		minPrice,
-		maxPrice,
-		priceGap,
-		expandInventory,
-		web3Url,
-	)
+	if isCancel == "false" {
+		bot := algorithm.NewConstProductBot(
+			makerClient,
+			minPrice,
+			maxPrice,
+			priceGap,
+			expandInventory,
+			web3Url,
+			operatorID,
+		)
 
-	bot.Run()
+		bot.Run()
+	} else {
+		rt, _ := makerClient.CancelAllPendingOrders()
+		println(rt)
+	}
 }
