@@ -29,8 +29,8 @@ BOT_MAX_PRICE=1.2 \
 BOT_PRICE_GAP=0.02 \
 BOT_EXPAND_INVENTORY=2 \
 BOT_WEB3_URL=http://127.0.0.1:8545 \
-BOT_OPERATOR_ID=1
-BOT_CANCEL=false
+BOT_OPERATOR_ID=1 \
+BOT_CANCEL=false \
 go run main.go
 ```
 
@@ -48,8 +48,8 @@ docker run --rm -it \
   -e BOT_PRICE_GAP=0.02 \
   -e BOT_EXPAND_INVENTORY=2 \
   -e BOT_WEB3_URL=http://127.0.0.1:8545 \
-  -e BOT_OPERATOR_ID=1
-  -e BOT_CANCEL=false
+  -e BOT_OPERATOR_ID=1 \
+  -e BOT_CANCEL=false \
   mutouji/amm-bots
 ```
 
